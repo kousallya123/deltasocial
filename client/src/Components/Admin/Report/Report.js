@@ -25,7 +25,7 @@ function Report() {
 
     
     const blockPost=async(id)=>{
-        const res= await axiosInstance.get(`post/blockPost/${id}`)
+        const res= await axiosInstance.get(`/post/blockPost/${id}`)
         if(res){
             alert('post blocked sucessfully')
         } 

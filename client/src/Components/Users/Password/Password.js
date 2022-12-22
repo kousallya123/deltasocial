@@ -13,7 +13,7 @@ function Password() {
   const sendLink=async(e)=>{
     e.preventDefault()
     try {    
-    const res=await axiosInstance.post('sendPasswordLink',{email:email})
+    const res=await axiosInstance.post('/sendPasswordLink',{email:email})
     if(res.data==='Email send successfully'){
       setMessage(true)
     }else{

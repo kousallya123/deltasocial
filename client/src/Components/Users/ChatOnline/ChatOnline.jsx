@@ -14,7 +14,7 @@ function ChatOnline({onlineUsers,currentId,setCurrentChat}) {
    })
   useEffect(()=>{
     const getFriends=async()=>{
-      const res=await axiosInstance.get('chat/friendlist/'+currentId,
+      const res=await axiosInstance.get('/chat/friendlist/'+currentId,
       {headers:{"x-access-token":localStorage.getItem('usertoken')}})
       setFriends(res.data)
     }
@@ -28,7 +28,7 @@ function ChatOnline({onlineUsers,currentId,setCurrentChat}) {
 
   const handleClick=async (user)=>{
     try {
-      const res= await axiosInstance.get(`chat/find/${currentId}/${user._id}`,
+      const res= await axiosInstance.get(`/chat/find/${currentId}/${user._id}`,
       {headers:{"x-access-token":localStorage.getItem('usertoken')}})
       setCurrentChat(res.data)
     } catch (error) {

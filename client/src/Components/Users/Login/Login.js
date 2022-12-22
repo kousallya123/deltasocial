@@ -31,7 +31,7 @@ function Login() {
             } else if (password.length > 20) {
                 setErrorMessage("Password must be less than 20 characters");
             } else {
-                const { data } = await axiosInstance.post('login', {
+                const { data } = await axiosInstance.post('/login', {
                     email: email,
                     password: password
                 });

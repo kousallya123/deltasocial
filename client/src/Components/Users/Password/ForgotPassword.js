@@ -31,7 +31,7 @@ const handleSubmit = async (e) => {
     } else if (password != confirm) {
       setErrorMessage("Password does not matched");
     }else{
-      const response=await axiosInstance.put(`updatePassword/${userId}`, {password:password,userId:userId,token:userToken})
+      const response=await axiosInstance.put(`/updatePassword/${userId}`, {password:password,userId:userId,token:userToken})
      if(response.data){
         navigate('/')
      }else{

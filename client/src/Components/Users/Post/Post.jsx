@@ -34,7 +34,7 @@ function Post({post,socket}) {
 
   const handleNotification=async(type)=>{
     if(currentUser._id!==user._id){
-      const notification=await axiosInstance.post(`notification`,{
+      const notification=await axiosInstance.post(`/notification`,{
         senderId:currentUser._id,
         receiverId:user._id,
         type, 
@@ -63,7 +63,7 @@ function Post({post,socket}) {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axiosInstance.get(`users?userId=${post.userId}`,
+      const res = await axiosInstance.get(`/users?userId=${post.userId}`,
       {headers:{"x-access-token":localStorage.getItem('usertoken')}});
       setUser(res.data);
     };
@@ -72,7 +72,7 @@ function Post({post,socket}) {
 
   const likeHandler = () => {
     try {
-      axiosInstance.put(`post/like/${post._id} `,{ userId: currentUser._id },
+      axiosInstance.put(`/post/like/${post._id} `,{ userId: currentUser._id },
       {headers:{"x-access-token":localStorage.getItem('usertoken')}});
     } catch (err) {
       setError(error)
@@ -84,7 +84,7 @@ function Post({post,socket}) {
 
   const deletePost=async()=>{
     console.log('delete post');
-    const res= await axiosInstance.delete(`post/${post._id}`,{ userId: currentUser._id },
+    const res= await axiosInstance.delete(`/post/${post._id}`,{ userId: currentUser._id },
     {headers:{"x-access-token":localStorage.getItem('usertoken')}}
     )
     console.log(res);
@@ -97,7 +97,7 @@ function Post({post,socket}) {
 
   const reportPost=async()=>{
     setShowModal(true)
-     const res=await axiosInstance.post(`post/report/${post._id}`,{postId:post._id,userId:user._id,
+     const res=await axiosInstance.post(`/post/report/${post._id}`,{postId:post._id,userId:user._id,
     ...report},
     {headers:{"x-access-token":localStorage.getItem('usertoken')}})
     if(res){
@@ -116,7 +116,7 @@ function Post({post,socket}) {
 
   const EditPost=async()=>{
     setEditModal(!editModal)
-    const res=await axiosInstance.put(`post/${post._id}`,{desc:desc,userId:currentUser._id})
+    const res=await axiosInstance.put(`/post/${post._id}`,{desc:desc,userId:currentUser._id})
     setDesc(res.data.desc)
   }
 

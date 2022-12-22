@@ -32,7 +32,7 @@ useEffect(()=>{
   useEffect(()=>{
     axiosInstance.get(`/users?username=${username}`).then((res)=>{
       setUser(res.data)
-      axiosInstance.get(`post/userpost/${res.data._id}`).then((res)=>{
+      axiosInstance.get(`/post/userpost/${res.data._id}`).then((res)=>{
         console.log(res.data,'post kittyyyyyyyyyyyyyyyyyy');
         setPost(res.data)
       })
@@ -43,7 +43,7 @@ useEffect(()=>{
   const FollowUser = async(id) => {
     console.log('followed user');
     try {
-      const res= await axiosInstance.put(`follow/${id}`,{ userId:users._id },
+      const res= await axiosInstance.put(`/follow/${id}`,{ userId:users._id },
       {headers:{"x-access-token":localStorage.getItem('usertoken')}});
       console.log(res);
       setCheck(!check)
@@ -54,7 +54,7 @@ useEffect(()=>{
   const UnFollowUser = async(id) => {
     console.log('unfollowed user');
     try {
-      const res= await axiosInstance.put(`unfollow/${id} `,{ userId:users._id },
+      const res= await axiosInstance.put(`/unfollow/${id} `,{ userId:users._id },
       {headers:{"x-access-token":localStorage.getItem('usertoken')}});
       console.log(res);
       setCheck(!check)

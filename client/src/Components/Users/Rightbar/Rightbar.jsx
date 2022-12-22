@@ -24,7 +24,7 @@ function Rightbar() {
 
   useEffect(()=>{
     const fetchUsers=async()=>{
-     const allUsers=await axiosInstance.get(`suggestions/${user._id}`)
+     const allUsers=await axiosInstance.get(`/suggestions/${user._id}`)
      if(allUsers){
       setUsers(allUsers.data)
      }else{
@@ -36,7 +36,7 @@ function Rightbar() {
   const FollowUser = async(id) => {
     console.log('followed user');
     try {
-      const res= await axiosInstance.put(`follow/${id}`,{ userId:user._id },
+      const res= await axiosInstance.put(`/follow/${id}`,{ userId:user._id },
       {headers:{"x-access-token":localStorage.getItem('usertoken')}});
       console.log(res);
       setCheck(!check)
@@ -47,7 +47,7 @@ function Rightbar() {
   const UnFollowUser = async(id) => {
     console.log('unfollowed user');
     try {
-      const res= await axiosInstance.put(`unfollow/${id} `,{ userId:user._id },
+      const res= await axiosInstance.put(`/unfollow/${id} `,{ userId:user._id },
       {headers:{"x-access-token":localStorage.getItem('usertoken')}});
       console.log(res);
       setCheck(!check)

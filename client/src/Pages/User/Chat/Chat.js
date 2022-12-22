@@ -33,7 +33,10 @@ function Chat() {
   const [receiver,setReceiver]=useState('')
   const [receivername,setReceiverName]=useState('')
   const [receiverpic,setReceiverPic]=useState('')
-  
+  const axiosInstance=axios.create({
+    baseURL:process.env.REACT_APP_API_URL,
+   })
+
   /* -------------------------------------------------------------------------- */
   /*                            for get conversations                           */
   /* -------------------------------------------------------------------------- */
@@ -42,7 +45,7 @@ function Chat() {
   useEffect(()=>{
     const getConversations=async()=>{
       try {
-        const res=await axios.get(`/chat/${user._id}`,
+        const res=await axiosInstance.get(`/chat/${user._id}`,
         {headers:{"x-access-token":localStorage.getItem('usertoken')}})
         setConversations(res.data)
       } catch (error) {
@@ -60,7 +63,7 @@ function Chat() {
   
   useEffect(()=>{
     const getMessages=async()=>{
-      const res= await axios.get('/chat/message/'+currentChat._id,
+      const res= await axiosInstance.get('/chat/message/'+currentChat._id,
       {headers:{"x-access-token":localStorage.getItem('usertoken')}})
       setMessages(res.data)
     }
@@ -112,7 +115,7 @@ function Chat() {
      })
 
     try {
-      const res=await axios.post(`/chat/message`,message,
+      const res=await axiosInstance.post(`/chat/message`,message,
       {headers:{"x-access-token":localStorage.getItem('usertoken')}})
       setMessages([...messages,res.data])
       setNewMessage("")
@@ -131,7 +134,7 @@ function Chat() {
   }
 const fetchUsers=async()=>{
   setShowModal(true)
-  const allUsers=await axios.get(`/admin/users`)
+  const allUsers=await axiosInstance.get(`/admin/users`)
   if(allUsers){
    setUsers(allUsers.data)
   }else{
@@ -140,7 +143,7 @@ const fetchUsers=async()=>{
 }
 
 const startChat=async(receiverId)=>{
-     const  res= await axios.post('http://localhost:5000/chat',{senderId:user._id,receiverId:receiverId},
+     const  res= await axios.post('/chat',{senderId:user._id,receiverId:receiverId},
      {headers:{"x-access-token":localStorage.getItem('usertoken')}})
      console.log(res);
      if(res.data==='alreadyExists'){
@@ -161,7 +164,7 @@ const startChat=async(receiverId)=>{
 
 useEffect(()=>{
   const fetchReceiver=async()=>{
-    const res=await axios.get(`http://localhost:5000/findUser/${receiver}`,
+    const res=await axiosInstance.get(`/findUser/${receiver}`,
     {headers:{"x-access-token":localStorage.getItem('usertoken')}})
     setReceiverName(res.data.username)
     setReceiverPic(res.data.profilePicture)

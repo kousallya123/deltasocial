@@ -31,7 +31,7 @@ function Share() {
       newPost.img=fileName
       
       try {
-        await axiosInstance.post('post/upload',data,
+        await axiosInstance.post('/post/upload',data,
         {headers:{"x-access-token":localStorage.getItem('usertoken')}})
         window.location.reload()
         
@@ -48,7 +48,7 @@ function Share() {
       newPost.video=fileName
       
       try {
-        await axiosInstance.post('post/upload',data,
+        await axiosInstance.post('/post/upload',data,
         {headers:{"x-access-token":localStorage.getItem('usertoken')}})
         
       } catch (error) {
@@ -56,7 +56,7 @@ function Share() {
       }
     }
     try{
-       await axiosInstance.post('post',newPost,
+       await axiosInstance.post('/post',newPost,
        {headers:{"x-access-token":localStorage.getItem('usertoken')}})
     }catch(err){
      console.log(err);

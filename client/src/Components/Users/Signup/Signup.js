@@ -50,7 +50,7 @@ function Signup() {
             } else if (password != confirm) {
                 setErrorMessage("Password does not matched");
             } else {
-                const { data } = await axiosInstance.post(`register`, {
+                const { data } = await axiosInstance.post(`/register`, {
                     username: name,
                     email: email,
                     password: password
@@ -89,7 +89,7 @@ function Signup() {
             setOtpError('Enter A 6 digit Otp')
         } else {
 
-            axios.post('http://localhost:5000/verifyOtp', data).then((response) => {
+            axiosInstance.post('/verifyOtp', data).then((response) => {
                 console.log(response.data)
                 if (response.data.verified) {
                     navigate('/')
@@ -100,8 +100,8 @@ function Signup() {
     }
 
     const resendOtp = async () => {
-        await axios
-            .post("http://localhost:5000/resendOtp", UserDetails)
+        await axiosInstance
+            .post("/resendOtp", UserDetails)
             .then((response) => {
                 setResend(!Resend);
                 setTimeout(() => {

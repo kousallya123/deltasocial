@@ -7,9 +7,12 @@ import Sidebar from '../../Components/Users/Sidebar/Sidebar'
 function Explore() {
     const PF=process.env.REACT_APP_PUBLIC_FOLDER
     const [video,setVideo]=useState([])
+    const axiosInstance=axios.create({
+      baseURL:process.env.REACT_APP_API_URL,
+     })
    useEffect(()=>{
     const fetchAllPost= async()=>{
-        const res=await axios.get('http://localhost:5000/admin/allPosts')
+        const res=await axiosInstance.get('/admin/allPosts')
         setVideo(res.data)
     }
     fetchAllPost()

@@ -14,7 +14,7 @@ function Conversation({conversation,currentUser}) {
        const friendId=conversation.members.find((m)=>m!==currentUser._id)
        const getUser=async()=>{
         try {
-            const res=await axiosInstance.get(`users?userId=${friendId}`,
+            const res=await axiosInstance.get(`/users?userId=${friendId}`,
             {headers:{"x-access-token":localStorage.getItem('usertoken')}})
             setUser(res.data)  
         } catch (error) {

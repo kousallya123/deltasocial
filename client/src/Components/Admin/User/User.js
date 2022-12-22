@@ -17,7 +17,7 @@ function Users() {
     
 
 useEffect(()=>{
-    axiosInstance.get("admin/users").then((response)=>{
+    axiosInstance.get("/admin/users").then((response)=>{
         if(response.data){
           SetUsers(response.data)
           setForms(response.data)
@@ -40,7 +40,7 @@ useEffect(()=>{
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, block the user!'
           }).then((result) => {
-            axiosInstance.post('admin/blockUsers/'+id).then((result) => {
+            axiosInstance.post('/admin/blockUsers/'+id).then((result) => {
             if (result.status == 200) {
                 console.log(result);
                 forceUpdate()
@@ -71,7 +71,7 @@ useEffect(()=>{
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, unblock!'
           }).then((result) => {
-            axiosInstance.post('admin/UnblockUsers/'+id).then((result) => {
+            axiosInstance.post('/admin/UnblockUsers/'+id).then((result) => {
                 if (result.status == 200) {
                     console.log(result);
                     forceUpdate()

@@ -26,7 +26,7 @@ function Feed() {
 
    useEffect (()=>{
       const fetchPost=async()=>{
-        const res=await axiosInstance.get(`post/timeline/${user._id}`,
+        const res=await axiosInstance.get(`/post/timeline/${user._id}`,
         {headers:{"x-access-token":localStorage.getItem('usertoken')}})
         setPosts(
           res.data.sort((p1,p2)=>{

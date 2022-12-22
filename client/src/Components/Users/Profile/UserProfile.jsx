@@ -45,7 +45,7 @@ function UserProfile() {
     editPost.profilePicture=fileName
     
     try {
-      await axiosInstance.post('post/upload',data ,{headers:{"x-access-token":localStorage.getItem('usertoken')}})
+      await axiosInstance.post('/post/upload',data ,{headers:{"x-access-token":localStorage.getItem('usertoken')}})
       // window.location.reload()
       
     } catch (error) {
@@ -73,7 +73,7 @@ function UserProfile() {
 
   useEffect(() => {
     const fetchPost = async () => {
-    const res = await axiosInstance.get(`post/userpost/${user._id}`,
+    const res = await axiosInstance.get(`/post/userpost/${user._id}`,
     {headers:{"x-access-token":localStorage.getItem('usertoken')}});
     setPost(res.data);
   };

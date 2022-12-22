@@ -19,7 +19,7 @@ function Comments({post,socket}) {
     const PF=process.env.REACT_APP_PUBLIC_FOLDER
     const handleComment=async(e)=>{
          e.preventDefault()
-         await axiosInstance.post(`post/addcomment/${post._id}`,
+         await axiosInstance.post(`/post/addcomment/${post._id}`,
          {userId:currentUser._id,comment:comment,postId:post._id})
          console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaa');
          setComment("")
@@ -27,7 +27,7 @@ function Comments({post,socket}) {
 
       useEffect(() => {
         const fetchUser = async () => {
-          const res = await axiosInstance.get(`users?userId=${post.userId}`,
+          const res = await axiosInstance.get(`/users?userId=${post.userId}`,
           {headers:{"x-access-token":localStorage.getItem('usertoken')}});
           setUser(res.data);
         };
@@ -36,7 +36,7 @@ function Comments({post,socket}) {
     
       useEffect(()=>{
         const postComments=async()=>{
-          const comments= await axiosInstance.get(`post/getcomments/${post._id}` ,
+          const comments= await axiosInstance.get(`/post/getcomments/${post._id}` ,
           {headers:{"x-access-token":localStorage.getItem('usertoken')}},)
             setSeeComments(comments.data);
           }
@@ -47,7 +47,7 @@ function Comments({post,socket}) {
         setCommentShow(!commentShow)
       }
       const handleNotification=async(type)=>{
-        const notification=await axiosInstance.post(`notification`,{
+        const notification=await axiosInstance.post(`/notification`,{
           senderId:currentUser._id,
           receiverId:user._id,
           type, 

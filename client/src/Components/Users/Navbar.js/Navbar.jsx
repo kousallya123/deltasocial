@@ -51,7 +51,7 @@ function Navbar({ socket }) {
 
    useEffect(()=>{
     const fetchNotification = async () => {
-      axiosInstance.get(`notification/${user._id}`).then((response)=>{
+      axiosInstance.get(`/notification/${user._id}`).then((response)=>{
       setNotifications(response.data.notification)
       setCount(response.data.countLength)
     }) }
@@ -69,7 +69,7 @@ function Navbar({ socket }) {
         setSearchModal(false)
       }
       const search = e.target.value
-      const user = await axiosInstance.put(`search/User`, { search })
+      const user = await axiosInstance.put(`/search/User`, { search })
       setUserFound(user.data)
     } catch (error) {
       console.log(error);
@@ -109,7 +109,7 @@ function Navbar({ socket }) {
    const handleRead=async(e)=>{
     setShowNotification(!showNotification)
       try {
-        const { data } = await axiosInstance.put(`notification/viewed/${user._id}`);
+        const { data } = await axiosInstance.put(`/notification/viewed/${user._id}`);
         console.log(data);
         setCount('')
       } catch (error) {
