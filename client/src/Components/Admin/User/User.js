@@ -10,12 +10,14 @@ function Users() {
     const [users,SetUsers]=useState('')
     const [forms, setForms]=useState([])
     const [reducerValue, forceUpdate] = useReducer(x => x + 1, 0);
-
+    const axiosInstance=axios.create({
+        baseURL:process.env.REACT_APP_API_URL,
+       })
 
     
 
 useEffect(()=>{
-    axios.get("http://localhost:5000/admin/users").then((response)=>{
+    axiosInstance.get("admin/users").then((response)=>{
         if(response.data){
           SetUsers(response.data)
           setForms(response.data)
@@ -38,7 +40,7 @@ useEffect(()=>{
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, block the user!'
           }).then((result) => {
-            axios.post('http://localhost:5000/admin/blockUsers/'+id).then((result) => {
+            axiosInstance.post('admin/blockUsers/'+id).then((result) => {
             if (result.status == 200) {
                 console.log(result);
                 forceUpdate()
@@ -69,7 +71,7 @@ useEffect(()=>{
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, unblock!'
           }).then((result) => {
-            axios.post('http://localhost:5000/admin/UnblockUsers/'+id).then((result) => {
+            axiosInstance.post('admin/UnblockUsers/'+id).then((result) => {
                 if (result.status == 200) {
                     console.log(result);
                     forceUpdate()

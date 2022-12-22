@@ -10,21 +10,23 @@ function Post() {
     const [post,setPost]=useState([])
     const [comment,setComment]=useState([])
     const [report,setReport]=useState([])
-
+    const axiosInstance=axios.create({
+        baseURL:process.env.REACT_APP_API_URL,
+       })
 
     useEffect(()=>{
         const fetchPost=(async()=>{
-            const res= await axios.get('/admin/allPosts')
+            const res= await axiosInstance.get('admin/allPosts')
             setPost(res.data)
         })
         fetchPost()
         const fetchComment=(async()=>{
-            const comments=await axios.get('/admin/allComments')
+            const comments=await axiosInstance.get('admin/allComments')
             setComment(comments.data)
         })
         fetchComment()
         const fetchReports=(async()=>{
-            const reports=await axios.get('/admin/allReports')
+            const reports=await axios.axiosInstance('admin/allReports')
             setReport(reports.data)
         })
         fetchReports()
@@ -32,7 +34,7 @@ function Post() {
 
 
     const blockPost=()=>{
-        const res=axios.get('http://localhost:5000/post/blockPost')
+        const res=axiosInstance.get('post/blockPost')
         console.log(res);
 
     }

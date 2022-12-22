@@ -7,11 +7,13 @@ function Password() {
   const [email,setEmail]=useState('')
   const [message,setMessage]=useState(false)
   const [errorMessage,setErrorMessage]=useState('')
-
+  const axiosInstance=axios.create({
+    baseURL:process.env.REACT_APP_API_URL,
+   })
   const sendLink=async(e)=>{
     e.preventDefault()
     try {    
-    const res=await axios.post('/sendPasswordLink',{email:email})
+    const res=await axiosInstance.post('sendPasswordLink',{email:email})
     if(res.data==='Email send successfully'){
       setMessage(true)
     }else{

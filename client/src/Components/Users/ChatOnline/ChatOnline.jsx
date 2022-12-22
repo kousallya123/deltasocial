@@ -8,10 +8,13 @@ function ChatOnline({onlineUsers,currentId,setCurrentChat}) {
   const PF=process.env.REACT_APP_PUBLIC_FOLDER
   const [friends,setFriends]=useState([])
   const [onlineFriends,setOnlinFriends]=useState([])
- const [error,setError]=useState('')
+  const [error,setError]=useState('')
+  const axiosInstance=axios.create({
+    baseURL:process.env.REACT_APP_API_URL,
+   })
   useEffect(()=>{
     const getFriends=async()=>{
-      const res=await axios.get('http://localhost:5000/chat/friendlist/'+currentId,
+      const res=await axiosInstance.get('chat/friendlist/'+currentId,
       {headers:{"x-access-token":localStorage.getItem('usertoken')}})
       setFriends(res.data)
     }
@@ -25,7 +28,7 @@ function ChatOnline({onlineUsers,currentId,setCurrentChat}) {
 
   const handleClick=async (user)=>{
     try {
-      const res= await axios.get(`/chat/find/${currentId}/${user._id}`,
+      const res= await axiosInstance.get(`chat/find/${currentId}/${user._id}`,
       {headers:{"x-access-token":localStorage.getItem('usertoken')}})
       setCurrentChat(res.data)
     } catch (error) {

@@ -12,6 +12,9 @@ function Share() {
   const [desc,setDesc]=useState('')
   const [image,setImage]=useState('')
   const [video,setVideo]=useState('')
+  const axiosInstance=axios.create({
+    baseURL:process.env.REACT_APP_API_URL,
+   })
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const submitHandler=async(e)=>{
     e.preventDefault() 
@@ -28,7 +31,7 @@ function Share() {
       newPost.img=fileName
       
       try {
-        await axios.post('http://localhost:5000/post/upload',data,
+        await axiosInstance.post('post/upload',data,
         {headers:{"x-access-token":localStorage.getItem('usertoken')}})
         window.location.reload()
         
@@ -45,7 +48,7 @@ function Share() {
       newPost.video=fileName
       
       try {
-        await axios.post('http://localhost:5000/post/upload',data,
+        await axiosInstance.post('post/upload',data,
         {headers:{"x-access-token":localStorage.getItem('usertoken')}})
         
       } catch (error) {
@@ -53,7 +56,7 @@ function Share() {
       }
     }
     try{
-       await axios.post('http://localhost:5000/post',newPost,
+       await axiosInstance.post('post',newPost,
        {headers:{"x-access-token":localStorage.getItem('usertoken')}})
     }catch(err){
      console.log(err);

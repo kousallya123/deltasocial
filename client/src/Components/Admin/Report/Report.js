@@ -10,9 +10,12 @@ function Report() {
 
     const PF=process.env.REACT_APP_PUBLIC_FOLDER
     const [report,setReport]=useState([])
+    const axiosInstance=axios.create({
+        baseURL:process.env.REACT_APP_API_URL,
+       })
     useEffect(()=>{
         const fetchReports=(async()=>{
-           await axios.get('/admin/allReports').then((response)=>{
+           await axiosInstance.get('/admin/allReports').then((response)=>{
             // console.log(response.data,'eeeeeeeeeeeeeeeeeeeeee');
             setReport(response.data)
            })
@@ -22,7 +25,7 @@ function Report() {
 
     
     const blockPost=async(id)=>{
-        const res= await axios.get(`http://localhost:5000/post/blockPost/${id}`)
+        const res= await axiosInstance.get(`post/blockPost/${id}`)
         if(res){
             alert('post blocked sucessfully')
         } 

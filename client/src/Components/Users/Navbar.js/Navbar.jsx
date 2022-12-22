@@ -38,6 +38,9 @@ function Navbar({ socket }) {
   const [error,setError]=useState('')
   const [count,setCount]=useState('')
   const [change,setChange]=useState()
+  const axiosInstance=axios.create({
+    baseURL:process.env.REACT_APP_API_URL,
+   })
 
   useEffect(()=>{
     socket?.on("getNotification",data=>{
@@ -48,7 +51,7 @@ function Navbar({ socket }) {
 
    useEffect(()=>{
     const fetchNotification = async () => {
-      axios.get(`http://localhost:5000/notification/${user._id}`).then((response)=>{
+      axiosInstance.get(`notification/${user._id}`).then((response)=>{
       setNotifications(response.data.notification)
       setCount(response.data.countLength)
     }) }
@@ -66,7 +69,7 @@ function Navbar({ socket }) {
         setSearchModal(false)
       }
       const search = e.target.value
-      const user = await axios.put(`http://localhost:5000/search/User`, { search })
+      const user = await axiosInstance.put(`search/User`, { search })
       setUserFound(user.data)
     } catch (error) {
       console.log(error);
@@ -106,7 +109,7 @@ function Navbar({ socket }) {
    const handleRead=async(e)=>{
     setShowNotification(!showNotification)
       try {
-        const { data } = await axios.put(`http://localhost:5000/notification/viewed/${user._id}`);
+        const { data } = await axiosInstance.put(`notification/viewed/${user._id}`);
         console.log(data);
         setCount('')
       } catch (error) {

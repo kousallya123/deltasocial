@@ -18,6 +18,9 @@ function Sidebar() {
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const axiosInstance=axios.create({
+    baseURL:process.env.REACT_APP_API_URL,
+   })
   const handleLogout=async(e)=>{
     e.preventDefault()
     Swal.fire({

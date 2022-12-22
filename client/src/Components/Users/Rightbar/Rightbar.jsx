@@ -12,6 +12,9 @@ function Rightbar() {
   const user = useSelector((state)=> state.user)
   const [check,setCheck]=useState(false)
   const PF=process.env.REACT_APP_PUBLIC_FOLDER
+  const axiosInstance=axios.create({
+    baseURL:process.env.REACT_APP_API_URL,
+   }) 
 
   useEffect(()=>{
     console.log('button changed');
@@ -21,7 +24,7 @@ function Rightbar() {
 
   useEffect(()=>{
     const fetchUsers=async()=>{
-     const allUsers=await axios.get(`/suggestions/${user._id}`)
+     const allUsers=await axiosInstance.get(`suggestions/${user._id}`)
      if(allUsers){
       setUsers(allUsers.data)
      }else{
@@ -33,7 +36,7 @@ function Rightbar() {
   const FollowUser = async(id) => {
     console.log('followed user');
     try {
-      const res= await axios.put(`http://localhost:5000/follow/${id}`,{ userId:user._id },
+      const res= await axiosInstance.put(`follow/${id}`,{ userId:user._id },
       {headers:{"x-access-token":localStorage.getItem('usertoken')}});
       console.log(res);
       setCheck(!check)
@@ -44,7 +47,7 @@ function Rightbar() {
   const UnFollowUser = async(id) => {
     console.log('unfollowed user');
     try {
-      const res= await axios.put(`http://localhost:5000/unfollow/${id} `,{ userId:user._id },
+      const res= await axiosInstance.put(`unfollow/${id} `,{ userId:user._id },
       {headers:{"x-access-token":localStorage.getItem('usertoken')}});
       console.log(res);
       setCheck(!check)

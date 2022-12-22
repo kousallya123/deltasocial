@@ -6,12 +6,15 @@ import  './Conversation.css'
 function Conversation({conversation,currentUser}) {
   const PF=process.env.REACT_APP_PUBLIC_FOLDER
   const [user,setUser]=useState(null) 
+  const axiosInstance=axios.create({
+    baseURL:process.env.REACT_APP_API_URL,
+   })
   const [error,setError]=useState('')
    useEffect(()=>{
        const friendId=conversation.members.find((m)=>m!==currentUser._id)
        const getUser=async()=>{
         try {
-            const res=await axios.get(`/users?userId=${friendId}`,
+            const res=await axiosInstance.get(`users?userId=${friendId}`,
             {headers:{"x-access-token":localStorage.getItem('usertoken')}})
             setUser(res.data)  
         } catch (error) {
