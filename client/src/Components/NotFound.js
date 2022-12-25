@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import {Link} from 'react-router-dom'
 
-function NotFound({error}) {
+function NotFound() {
   const user=useSelector(state=>state.user)
   return (
     
@@ -12,7 +12,7 @@ function NotFound({error}) {
     <img src='/assets/error3.jpg' className='items-center'></img>
     </div>
     <h1 className='text-3xl text-bold text-gray-400 text-center p-3'>Something Went Wrong!!!!!!</h1>
-    <h3 className='text-3xl text-bold text-red-400 text-center p-3'>{error.message}</h3>
+    <h3 className='text-3xl text-bold text-red-400 text-center p-3'>Error</h3>
     <div className='flex items-center justify-center '>
       {user.username ?  
       <Link to='/home'>
