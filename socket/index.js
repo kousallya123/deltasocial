@@ -1,6 +1,6 @@
 const io=require("socket.io")(2002,{
     cors:{
-        origin:"http://localhost:3000",
+        origin:"https://deltasocial.tk",
     }
 })
 

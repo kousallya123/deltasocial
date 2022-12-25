@@ -36,6 +36,7 @@ function Chat() {
   const axiosInstance=axios.create({
     baseURL:process.env.REACT_APP_API_URL,
    })
+   const socketInstance=process.env.REACT_APP_SOCKET_URL
 
   /* -------------------------------------------------------------------------- */
   /*                            for get conversations                           */
@@ -73,7 +74,7 @@ function Chat() {
 
 
    useEffect(()=>{
-    socket.current=io("ws://localhost:2002")
+    socket.current=io(`ws:${socketInstance}`)
     socket.current.on("getMessage",(data)=>{
       setarrivalMessage({
         sender:data.senderId,

@@ -15,9 +15,10 @@ function Feed() {
    const axiosInstance=axios.create({
     baseURL:process.env.REACT_APP_API_URL,
    })
+   const socketInstance=process.env.REACT_APP_SOCKET_URL
   
   useEffect(()=>{
-    setSocket(io('http://localhost:2002'))
+    setSocket(io(`${socketInstance}`))
   },[])
 
   useEffect(()=>{
