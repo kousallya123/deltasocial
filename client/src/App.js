@@ -31,7 +31,7 @@ function App() {
               <Route path='/chat' element={<Chat/>}/> 
               <Route path='/password' element={<Password/>}/>
               <Route path='/forgot/:id/:token' element={<ForgotPassword/>}/>  
-              <Route path='*' element={<NotFound/>}/>  
+              {/* <Route path='*' element={<NotFound/>}/>   */}
           </Routes>
           <Routes>  
           <Route path='/sidebar' element={<Sidebar/>}/>
@@ -39,7 +39,7 @@ function App() {
               <Route path='/admin-posts' element={<AdminPostPage/>}/> 
               <Route path='/admin-login' element={<AdminLogin/>}/>  
               <Route path='/admin-reports' element={<AdminReportPage/>}/>  
-              <Route path='*' element={<NotFound/>}/>  
+              {/* <Route path='*' element={<NotFound/>}/>   */}
           </Routes>
        </Router>
     </div>
