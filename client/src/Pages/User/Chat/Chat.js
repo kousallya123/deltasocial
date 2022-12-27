@@ -74,7 +74,7 @@ function Chat() {
 
 
    useEffect(()=>{
-    socket.current=io(`ws:${socketInstance}`)
+    socket.current=io(`ws:${socketInstance}`,{path:'/socket/socket.io'})
     socket.current.on("getMessage",(data)=>{
       setarrivalMessage({
         sender:data.senderId,

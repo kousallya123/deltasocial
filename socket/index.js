@@ -1,4 +1,5 @@
 const io=require("socket.io")(2002,{
+    path: '/socket/socket.io',
     cors:{
         origin:"https://deltasocial.tk",
     }

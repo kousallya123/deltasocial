@@ -47,6 +47,10 @@ const handleSubmit = async (e) => {
   return (
     <div class="flex items-center h-screen">
       <div class=" bg-white rounded shadow-lg p-8 m-4 md:max-w-sm md:mx-auto">
+      <div className="flex justify-center">
+              <img alt=""className="h-14 w-14"
+                  src="https://media.istockphoto.com/vectors/impossible-triangle-penrose-optical-illusion-purple-gradient-endless-vector-id1210588277"/>
+            </div>
       <span class="block  text-xl  font-bold mb-4">Enter new Password</span>   
         <form class="mb-4"  onSubmit={handleSubmit}>
         {errorMessage && <div className="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">{errorMessage}</div>}
@@ -62,7 +66,7 @@ const handleSubmit = async (e) => {
                                 </div>
 
                                 <button className='w-full my-5 py-2 bg-purple-600 shadow-lg shadow-purple-500/50 hover:shadow-purple-500/40 text-white font-semibold rounded-lg'>Update password</button>
-        </form>
+                    </form>
         <Link to='/'>
         <p class="text-purple-500 text-center text-sm" >Back to login</p>
         </Link>

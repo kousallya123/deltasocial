@@ -29,6 +29,10 @@ function Password() {
   return (
     <div class="flex items-center h-screen">
       <div class=" bg-white rounded shadow-lg p-8 m-4 md:max-w-sm md:mx-auto">
+      <div className="flex justify-center">
+              <img alt=""className="h-14 w-14 m-2"
+                  src="https://media.istockphoto.com/vectors/impossible-triangle-penrose-optical-illusion-purple-gradient-endless-vector-id1210588277"/>
+            </div>
       <span class="block  text-xl  font-bold mb-4">Forgot Your Password</span>   
       {errorMessage && <div className="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">{errorMessage}</div>}
       {message && <div className="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">Check your mail</div>}
@@ -41,7 +45,7 @@ function Password() {
                placeholder='enter your email' value={email} onChange={(e)=>setEmail(e.target.value)}/>
           </div>
 
-          <button className='ml-16 px-2 my-5 py-2 bg-purple-600 shadow-lg shadow-purple-500/50 hover:shadow-purple-500/40 text-white font-semibold rounded-lg' onClick={sendLink}>Send email </button>
+          <button className='w-full px-2 my-5 py-2 bg-purple-600 shadow-lg shadow-purple-500/50 hover:shadow-purple-500/40 text-white font-semibold rounded-lg' onClick={sendLink}>Send email </button>
         </form>
         <Link to='/'>
         <p class="text-purple-500 text-center text-sm" >Back to login</p>

@@ -18,7 +18,7 @@ function Feed() {
    const socketInstance=process.env.REACT_APP_SOCKET_URL
   
   useEffect(()=>{
-    setSocket(io(`${socketInstance}`))
+    setSocket(io(`${socketInstance}`,{path: '/socket/socket.io'}))
   },[])
 
   useEffect(()=>{
