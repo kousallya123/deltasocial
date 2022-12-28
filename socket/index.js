@@ -1,10 +1,11 @@
-const io=require("socket.io")(2002,{
+const io = require("socket.io")(2002, {
     path: '/socket/socket.io',
-    cors:{
-        origin:"http://localhost:3000",
-    }
-})
-
+      cors: {
+        
+        origin: "http://localhost:3000",
+      },
+    });
+    
 let users=[]
 
 const addUser=(userId,socketId)=>{

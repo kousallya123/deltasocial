@@ -181,9 +181,9 @@ function Post({post,socket}) {
         <div className="postCenter">
           <span className="postText" value={desc} >{post?.desc}</span>
           <img className="postImg" src={PF + post.img} alt="" loading="lazy"/>
-          {post?.video ?<Player>
-         <source src={PF + post.video} />
-       </Player>
+          {post?.video ?
+         <video src={PF + post.video}  controls autoPlay/>
+      //  </Player>
        // <video src= alt=""  className='w-100' autoPlay/>
       :null}
         </div>

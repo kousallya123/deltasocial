@@ -74,7 +74,7 @@ function Chat() {
 
 
    useEffect(()=>{
-    socket.current=io(`ws:${socketInstance}`,{path:'/socket/socket.io'})
+    socket.current=io(`${socketInstance}`,{path:'/socket/socket.io'})
     socket.current.on("getMessage",(data)=>{
       setarrivalMessage({
         sender:data.senderId,
@@ -144,7 +144,7 @@ const fetchUsers=async()=>{
 }
 
 const startChat=async(receiverId)=>{
-     const  res= await axios.post('/chat',{senderId:user._id,receiverId:receiverId},
+     const  res= await axiosInstance.post('/chat',{senderId:user._id,receiverId:receiverId},
      {headers:{"x-access-token":localStorage.getItem('usertoken')}})
      console.log(res);
      if(res.data==='alreadyExists'){
