@@ -2,7 +2,7 @@ const io = require("socket.io")(2002, {
     path: '/socket/socket.io',
       cors: {
         
-        origin: "http://localhost:3000",
+        origin: "https://deltasocial.tk/",
       },
     });
     
